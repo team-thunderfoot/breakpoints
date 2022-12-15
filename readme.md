@@ -20,12 +20,17 @@ import {breakpoints} from '@teamthunderfoot/breakpoints';
 ```sh
 console.log(breakpoints[0]) // same as mobile
 
+// loop array
 breakpoints.forEach(element => {
-
     if(element.tablets){
         console.log('only for tablet Small / 810px')
     }
 });
+
+//convert to object
+breakpoints.reduce((target, inner) => Object.assign(target, inner), {})
+console.log(breakpoints.mobile)
+
 ```
 
 [Thunderfoot](https://teamthunderfoot.com/)
