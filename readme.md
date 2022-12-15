@@ -28,8 +28,8 @@ breakpoints.forEach(element => {
 });
 
 //convert to object
-breakpoints.reduce((target, inner) => Object.assign(target, inner), {})
-console.log(breakpoints.mobile)
+var bk = breakpoints.reduce((target, inner) => Object.assign(target, inner), {})
+console.log(bk.mobile)
 
 ```
 
