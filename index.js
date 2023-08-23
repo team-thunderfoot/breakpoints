@@ -1,3 +1,5 @@
+// breakpoints.js
+
 const breakpoints = [
     { 'mobile': 580 },
     { 'tablets': 810 },
@@ -6,6 +8,8 @@ const breakpoints = [
     { 'laptop': 1570 },
     { 'desktop': 1700 }
 ];
+
+let currentBreakpoint = getCurrentBreakpoint(window.innerWidth);
 
 function getCurrentBreakpoint(screenWidth) {
     for (let i = breakpoints.length - 1; i >= 0; i--) {
@@ -17,14 +21,13 @@ function getCurrentBreakpoint(screenWidth) {
             return breakpointName;
         }
     }
-
     // If the screen width is smaller than all breakpoints, return a default value
     return 'mobile';
 }
 
 function updateBreakpointOnResize() {
-    const screenWidth = window.innerWidth;
-    return getCurrentBreakpoint(screenWidth);
+    currentBreakpoint = getCurrentBreakpoint(window.innerWidth);
+    return currentBreakpoint;
 }
 
 // Add event listener for screen resize
@@ -33,4 +36,4 @@ window.addEventListener('resize', updateBreakpointOnResize);
 // Initial check for breakpoint when the page loads
 updateBreakpointOnResize();
 
-export { breakpoints, getCurrentBreakpoint, updateBreakpointOnResize };
+export { breakpoints, currentBreakpoint, getCurrentBreakpoint, updateBreakpointOnResize };

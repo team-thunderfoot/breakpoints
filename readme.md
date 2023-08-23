@@ -1,37 +1,41 @@
-# Thunderfoot Breakpoints
+# Breakpoints.js Documentation
 
-At thunderfoot we have a set of 6 breakpoints
-- mobile - 580 
-- tablets - 810
-- tabletm - 1024
-- tabletl - 1300
-- laptop - 1570
-- desktop - 1700
+`breakpoints.js` is a JavaScript module for managing responsive design breakpoints. It provides functions for calculating the current breakpoint based on the screen width and dynamically updating the current breakpoint on window resize.
 
-### Install
-```sh
+
+## Installation
+
+```
 npm i @teamthunderfoot/breakpoints
 ```
-### Setup
-```sh
-import {breakpoints} from '@teamthunderfoot/breakpoints';
+
+## Usage
+
+### Importing the Module
+
+
+```javascript
+import { breakpoints, currentBreakpoint, getCurrentBreakpoint, updateBreakpointOnResize } from '@teamthunderfoot/breakpoints';
 ```
-### Setup
-```sh
-console.log(breakpoints[0]) // same as mobile
 
-// loop array
-breakpoints.forEach(element => {
-    if(element.tablets){
-        console.log('only for tablet Small / 810px')
-    }
-});
-
-//convert to object
-var bk = breakpoints.reduce((target, inner) => Object.assign(target, inner), {})
+### Breakpoints
+```
+let bk = breakpoints.reduce((target, inner) => Object.assign(target, inner), {})
 console.log(bk.mobile)
-
 ```
 
-[Thunderfoot](https://teamthunderfoot.com/)
+### Using currentBreakpoint:
+```
+let screenWidth = window.innerWidth; 
+let currentBreakpoint = getCurrentBreakpoint(screenWidth);
+console.log('Current Breakpoint:', currentBreakpoint);
+```
 
+### Updating the Current Breakpoint:
+```
+// Add event listener for screen resize
+window.addEventListener('resize', () => {
+    let currentBreakpoint = updateBreakpointOnResize();
+    console.log('Current Breakpoint:', currentBreakpoint);
+});
+```
