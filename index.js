@@ -18,16 +18,26 @@ function getCurrentBreakpoint(screenWidth) {
         const breakpointValue = breakpoint[breakpointName];
 
         if (screenWidth >= breakpointValue) {
-            return breakpointName;
+            return { 
+                name: breakpointName, 
+                value: breakpointValue, 
+                currentWidth: screenWidth 
+            };
         }
     }
+
     // If the screen width is smaller than all breakpoints, return a default value
-    return 'mobile';
+    return { 
+        name: 'mobile', 
+        value: 0, 
+        currentWidth: screenWidth 
+    };
 }
 
 function updateBreakpointOnResize() {
-    currentBreakpoint = getCurrentBreakpoint(window.innerWidth);
-    return currentBreakpoint;
+    const { name, value, currentWidth } = getCurrentBreakpoint(window.innerWidth);
+    const currentValues = { name, value, currentWidth };
+    return currentValues;
 }
 
 // Add event listener for screen resize
